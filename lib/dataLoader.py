@@ -177,7 +177,7 @@ def calculate_tpr_fpr_no_indices(gt_poison, pd_poison):
 #         pd_poison
 #     )
 
-def pseudoLabeling_ori(indices, weights, lowest_value, largest_value, isolate_ratio, untrusted_label, poison_flags, batch, ulabeled_embeedding, q, negative_loss, ssl_dl, bs, device, flag_lcv):
+def pseudoLabeling_ori(indices, weights, lowest_value, largest_value, isolate_ratio, untrusted_label, poison_flags, batch, ulabeled_embeedding, q, negative_loss, ssl_dl, bs, device, flag_lcv=True):
     # high-confidence data
     predicted_pos, predicted_class = torch.max(q, dim=1)
     # Sort the tensor in ascending order
