@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Command 1
+python simclr.py -t adaptivecifar10 -class 10 -pb poison -pr 0.003 -d cuda:0
+python dbd.py -dataset=cifar10 -poison_type=adaptive_blend -poison_rate=0.003 -cover_rate=0.003 -image_size=192 -batch_size=256
+
+## Command 2
+#python simclr.py -dataset=cifar10 -poison_type=adaptive_patch -poison_rate=0.003 -cover_rate=0.003 -image_size=192 -batch_size=256
+#python dbd.py -dataset=cifar10 -poison_type=adaptive_patch -poison_rate=0.003 -cover_rate=0.003 -image_size=192 -batch_size=256
+
+## Command 3
+#python simclr.py -dataset=cifar10 -poison_type=tact -poison_rate=0.003 -cover_rate=0.003 -image_size=192 -batch_size=256
+#python dbd.py -dataset=cifar10 -poison_type=tact -poison_rate=0.003 -cover_rate=0.003 -image_size=192 -batch_size=256
