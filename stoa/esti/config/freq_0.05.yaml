@@ -1,0 +1,30 @@
+random_seed: 0
+dataset_root: ./datasets
+attack_type_list:
+  [
+#  'all_clean_dataset',
+  'freq_0.05_0',
+#  'lc',
+#  'blended_hellokitty_αtrain0.2αtest0.2',
+#  'ssba',
+#  'blended_randomPattern_αtrain0.2αtest0.5',
+#  'iab',
+#  'wanet',
+#  'sig_pratio_0.04_delta_40',
+#  'badnet_0.2pratio',
+#  'blended_hellokitty_αtrain0.2αtest0.2_0.2pratio',
+#  'lc_0.08pratio',
+#  'sig_pratio_0.08_delta_40',
+#  'badnet_0.15pratio',
+#  'blended_hellokitty_αtrain0.2αtest0.2_0.15pratio',
+#  'lc_0.06pratio',
+#  'sig_pratio_0.06_delta_40'
+  ]
+dataset_name: cifar10
+save_root: record/
+log_dir: record/
+model_name: PreActResNet18
+num_workers: 8
+seed_sample_ratio: 0.002  # The ratio of seed samples to the total dataset
+dual_model_iter: 2       # Number of iterations for the dual model
+trap_model_iter: 3      # Number of iterations for the trap model

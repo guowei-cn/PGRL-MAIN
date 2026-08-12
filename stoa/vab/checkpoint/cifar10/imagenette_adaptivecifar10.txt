@@ -1,0 +1,6 @@
+Epoch:0   Accuracy1:9.94   Accuracy2:9.94
+Epoch:0   Accuracy1:0.08   Accuracy2:0.00
+Epoch:1   Accuracy1:9.94   Accuracy2:38.45
+Epoch:1   Accuracy1:0.08   Accuracy2:35.27
+Epoch:2   Accuracy1:9.94   Accuracy2:44.33
+Epoch:2   Accuracy1:0.08   Accuracy2:31.88
