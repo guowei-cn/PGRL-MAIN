@@ -1144,11 +1144,11 @@ def cosinelr_gen(base_lr, final_lr, epochs, train_loader):
 def get_hyperparameters(poison_type, model_name='cnn'):
     if poison_type == 'adaptivecifar10' or 'freq' in poison_type or poison_type == 'pattern' \
             or 'wanet' in poison_type:
-        batch_size, num_workers = 192, 4
+        batch_size, num_workers = 512, 4
         lr, final_lr, epoch_num = 0.01, 0.0001, 55
     elif 'adaptiveattack' in poison_type or poison_type == 'blto':
         if model_name == 'cnn' or model_name == 'efficient':
-            batch_size, num_workers = 256, 4
+            batch_size, num_workers = 512, 4
             lr, final_lr, epoch_num = 0.01, 0.0001, 55
         elif model_name == 'transformer':
             batch_size, num_workers = 125, 4

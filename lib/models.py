@@ -186,7 +186,7 @@ def gen_model(poison_type, number_classes, num_cluster, model_name):
             model = My_vit_b_32(number_classes)
         elif model_name == 'vgg19':
             print('vgg19')
-            model = vgg19(number_classes)
+            model = vgg19(number_classes, pretrained=True)
         elif model_name == 'efficient':
             print('efficient')
             model = EfficientNet(number_classes)
@@ -342,7 +342,7 @@ class Bottleneck(nn.Module):
 class ResNet(nn.Module):
     def __init__(self, block, num_blocks, num_classes=16, project_indim=2048):
         super(ResNet, self).__init__()
-        self.backbone = resnet18()
+        self.backbone = resnet18(pretrained=True)
         hidden_mlp, output_dim = 256, 128
         self.projection_head = nn.Sequential(
             nn.Linear(self.backbone.fc.in_features, hidden_mlp),
@@ -386,7 +386,7 @@ def ResNet18(num_classes, project_indim=2048):
 class MyXResNet18(nn.Module):
     def __init__(self, num_classes=10):
         super(MyXResNet18, self).__init__()
-        self.backbone = xresnet18_deep(pretrained=False)
+        self.backbone = xresnet18_deep(pretrained=True)
         hidden_mlp, output_dim = 256, 128
         self.projection_head = nn.Sequential(
             nn.Linear(self.backbone[-1].in_features, hidden_mlp),
@@ -427,7 +427,7 @@ class MyXResNet18(nn.Module):
 class MyEfficentNet(nn.Module):
     def __init__(self, num_classes=16):
         super(MyEfficentNet, self).__init__()
-        self.backbone = efficientnet_b0()
+        self.backbone = efficientnet_b0(pretrained=True)
         hidden_mlp, output_dim = 256, 128
         self.projection_head = nn.Sequential(
             nn.Linear(self.backbone.classifier[1].in_features, hidden_mlp),
