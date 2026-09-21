@@ -3,7 +3,7 @@ set -euo pipefail
 
 script="our_method_with_OT_emb_as_act.py"
 
-dataset="imagenette"
+dataset="pattern"
 classes=10
 poison="poison"
 sample=10
@@ -14,8 +14,8 @@ log_dir="logs"
 mkdir -p "$log_dir"
 
 # two pr values to run
-prs=(0.05 0.003)
-xloss_l=("lcv" "fde")
+prs=(0.003)
+xloss_l=("all")
 
 for pr in "${prs[@]}"; do
   for xloss in "${xloss_l[@]}"; do

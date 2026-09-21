@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Define poison types
-POISON_TYPES=("pattern" "adaptivecifar10")
+POISON_TYPES=("pattern")
 
 # Define poison ratios
-POISON_RATIOS=(0.003 0.05)
+POISON_RATIOS=(0.003)
 
 # Loop through each poison type
 for poison_type in "${POISON_TYPES[@]}"

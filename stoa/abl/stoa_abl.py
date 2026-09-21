@@ -1,4 +1,6 @@
+import random
 import os, sys
+
 home_folder = os.path.join(os.getcwd().split('PGRL-main')[0], 'PGRL-main')
 sys.path.append(home_folder)
 
@@ -22,6 +24,25 @@ from lib.models import gen_model, CNN, ResNet18, MyXResNet18
 from train import evaluating
 debugging_flag = False
 
+def set_seed(seed: int):
+    # Set the seed for the built-in random module
+    random.seed(seed)
+
+    # Set the seed for NumPy
+    np.random.seed(seed)
+
+    # Set the seed for PyTorch on CPU
+    torch.manual_seed(seed)
+
+    # If you are using a GPU, set the seed for all GPUs
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)  # if using multi-GPU
+
+    # Ensure deterministic behavior for certain functions
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    
 ############################################################
 ######################### ResNet18 #########################
 ############################################################
@@ -1009,6 +1030,7 @@ def main(opt):
     args_str = '_'.join('{}'.format(value) for _, value in vars(args).items())
     writer = SummaryWriter(comment='{}_args_{}'.format(os.path.basename(__file__), args_str))
     print(args)
+
     # Load models
     print('----------- Network Initialization --------------')
     # replace by my model
@@ -1102,6 +1124,7 @@ if __name__ == '__main__':
         parser.add_argument('-t', '--poison_type', required=True, type=str, help='Specify the type of poisoning.')
         parser.add_argument('-class', '--num_class', required=True, type=int, help='The number of classes.')
         parser.add_argument('-pb', '--poison_or_benign', required=True, type=str, help='Specify whether the data is poison or benign.')
+        parser.add_argument('-seed', '--seed', default=1, type=int, help='The random seed for reproducibility.')
         parser.add_argument('-d', '--device', default='cuda:0', type=str, help='The device to use (e.g., "cpu" or "cuda").')
         parser.add_argument('-pr', '--poison_rate', default=0, type=float, help='The rate of poisoning.')
         parser.add_argument('-cr', '--cover_rate', default=0, type=float, help='The rate of cover rate.')
@@ -1110,4 +1133,6 @@ if __name__ == '__main__':
         return parser.parse_args()
 
     args = parse_args()
+    # set random seed
+    set_seed(args.seed)
     main(args)

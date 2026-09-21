@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Array of datasets (bash syntax, no '=' and no brackets)
-datasets=(imagenette_freq_meg_500 imagenette_adaptivecifar10 )
+datasets=(pattern freq_meg_500 adaptivecifar10)
 
 classes=10
 device="cuda:0"
